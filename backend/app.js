@@ -2,6 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
+const Post = require("./models/post");
+
 const app = express();
 
 app.use(bodyParser.json());
@@ -10,7 +12,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
 app.post("/api/v1/posts", (req, res, next) => {
-  const post = req.body;
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content,
+  });
   console.log(post);
   res.status(201).json({
     message: "Post created successfully!",
