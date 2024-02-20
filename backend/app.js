@@ -1,10 +1,22 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 
 const Post = require("./models/post");
 
 const app = express();
+
+mongoose
+  .connect(
+    "mongodb+srv://truper:<password></password>@cluster0.8pssy.mongodb.net/?retryWrites=true&w=majority"
+  )
+  .then(() => {
+    console.log("Connected to MongoDB!");
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
