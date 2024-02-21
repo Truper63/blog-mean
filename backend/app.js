@@ -33,21 +33,12 @@ app.post("/api/v1/posts", (req, res, next) => {
 });
 
 app.use("/api/v1/posts", (req, res, next) => {
-  const posts = [
-    {
-      id: "akjheohjflakuj",
-      title: "Hello World!",
-      content: "This is a sample post.",
-    },
-    {
-      id: "hfuadualdual",
-      title: "Hello again World!",
-      content: "This is another sample post.",
-    },
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts,
+  Post.find().then((documents) => {
+    console.log(documents);
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      posts: documents,
+    });
   });
 });
 
