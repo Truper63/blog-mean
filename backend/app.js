@@ -8,9 +8,7 @@ const Post = require("./models/post");
 const app = express();
 
 mongoose
-  .connect(
-    "mongodb+srv://truper:<password></password>@cluster0.8pssy.mongodb.net/?retryWrites=true&w=majority"
-  )
+  .connect("mongodb+srv:")
   .then(() => {
     console.log("Connected to MongoDB!");
   })
@@ -28,7 +26,7 @@ app.post("/api/v1/posts", (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-  console.log(post);
+  post.save();
   res.status(201).json({
     message: "Post created successfully!",
   });
