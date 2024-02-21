@@ -32,12 +32,22 @@ app.post("/api/v1/posts", (req, res, next) => {
   });
 });
 
-app.use("/api/v1/posts", (req, res, next) => {
+app.get("/api/v1/posts", (req, res, next) => {
   Post.find().then((documents) => {
     console.log(documents);
     res.status(200).json({
       message: "Posts fetched successfully!",
       posts: documents,
+    });
+  });
+});
+
+app.delete("/api/v1/posts/:id", (req, res, next) => {
+  const id = req.params.id;
+  Post.findByIdAndDelete(id).then((result) => {
+    console.log(result);
+    res.status(200).json({
+      message: "Post deleted successfully!",
     });
   });
 });
