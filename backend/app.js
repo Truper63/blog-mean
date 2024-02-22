@@ -8,7 +8,9 @@ const Post = require("./models/post");
 const app = express();
 
 mongoose
-  .connect("mongodb+srv:")
+  .connect(
+    `mongodb+srv://truper63:${process.env.MONGO_ATLAS_PW}@cluster0.8pssy.mongodb.net/blog-mean?retryWrites=true&w=majority&appName=Cluster0`
+  )
   .then(() => {
     console.log("Connected to MongoDB!");
   })

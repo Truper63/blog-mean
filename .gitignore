@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# NodeMon
+nodemon.json
+
 # IDEs and editors
 .idea/
 .project
